@@ -5,9 +5,13 @@
   </head>
   <body>
     <h2 align="center"> Portal to Dark Web </h2>
-    <div align="center"><form action="/auth">
+    {% if msg != "" %}
+    <h3> {{ msg }} </h3>
+    {% endif %}
+    <p
+    <div align="center"><form action="/auth" method="POST">
       Username: <input type="text" name="username"><br>
-      Password: <input type="text" name="password"><br>
+      Password: <input type="password" name="password"><br>
       <input type="submit" name="loginPage">
     </form></div>
   </body>

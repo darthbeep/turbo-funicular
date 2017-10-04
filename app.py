@@ -1,29 +1,30 @@
 from flask import Flask, render_template, request, session
 app = Flask(__name__) # create instance of class
 
-# Naming the session
-session["Jeff"] = ""
-session["username"] = ""
-session["password"] = ""
+session["jeff"] = ""
+password = "Super secret password"
 
-# Initially loading the webpage
+# Initially loading the webpage, load the welcome page
+# if they're logged in
 @app.route("/", methods=["POST"])
 def login():
-    if session["username"] != "":
+    if session.get("jeff") == "jeff_sessions123":
         return render_template('welcome.html')
-    elif session["username"] == "":
-        print "200: Login page loaded"
+    else:
         return render_template('login.html')
 
 @app.route("/auth")
 def authentification():
     # Get user-inputted username and password
-    username = request.args["username"]
-    password = request.args["password"]
+    userIn = request.form["username"]
+    passIn = request.form["password"]
+    if userIn == username and passIn == password:
+        session["jeff"] = userIn
+        return render_template("welcome.html")
+    else:
+        return render_template("login.html",
+                               error_msg = "Incorrect user or pass")
 
-    if username == "
-    render_template('runMe.html',name=form["username"].value)
-    
 if __name__ == "__main__":
     app.debug = True
     app.run()

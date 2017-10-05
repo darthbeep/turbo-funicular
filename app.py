@@ -1,9 +1,10 @@
 # Team Turbo Funiculator
 # Samantha Ngo, Helen Ye, Shaina Peters
 # SoftDev -- pd7
-# hw07
+# hw07 -- Do I know you?
 # 2017-10-04
 
+# Import all necessities
 from flask import Flask, render_template, request, session
 import os
 
@@ -20,6 +21,7 @@ app.secret_key = os.urandom(32)
 # If initially loading the webpage, load the login page.
 # If they're already logged in, then load the welcome page.
 @app.route("/")
+@app.route("/login")
 def login():
     print "Session.get('Jeff') returns ", session.get("Jeff")
     if session.get("Jeff") == username:

@@ -27,9 +27,12 @@ def authentification():
         session["jeff"] = userIn
         return render_template("welcome.html",
                                username = username)
+    elif userIn != username:
+        return render_template("error.html",
+                               msg = "Incorrect user")
     else:
-        return render_template("login.html",
-                               msg = "Incorrect user or pass")
+        return render_template("error.html",
+                               msg = "Incorrect pass")
 
 @app.route("/logout")
 def logout():

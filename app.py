@@ -10,6 +10,7 @@ app.secret_key = os.urandom(32)
 # Initially loading the webpage, load the welcome page
 # if they're logged in
 @app.route("/")
+@app.route("/login")
 def login():
     if session.get("jeff") == username:
         return render_template('welcome.html',

@@ -1,10 +1,20 @@
+'''
+Samantha Ngo, Shaina Peters, Helen Ye
+SoftDev1 pd7
+HW07 -- Do I know you?
+2017-10-04
+'''
+
+# Import all necessities
 from flask import Flask, render_template, request, session
 import os
 app = Flask(__name__) # create instance of class
 
+# Declare our username/password combo
 username = "jeff_sessions123"
 password = "Super secret password"
 
+# Define a secret key
 app.secret_key = os.urandom(32)
 
 # Initially loading the webpage, load the welcome page
@@ -24,6 +34,7 @@ def authentification():
     # Get user-inputted username and password
     userIn = request.form["username"]
     passIn = request.form["password"]
+    # Authenticate user
     if userIn == username and passIn == password:
         session["jeff"] = userIn
         return render_template("welcome.html",
@@ -35,6 +46,7 @@ def authentification():
         return render_template("error.html",
                                msg = "Incorrect pass")
 
+# Log out the user by resetting the session
 @app.route("/logout")
 def logout():
     session["jeff"] = ""
